@@ -7,7 +7,7 @@ defmodule Qwazar.Core.MapStorage do
   @behaviour EntityStorage
 
   @impl true
-  def new() do
+  def new(_opts) do
     {:ok, pid} = Agent.start_link(fn -> Map.new() end)
     pid
   end

@@ -3,7 +3,7 @@ defmodule Qwazar.Core.EntityStorage do
 
   @type storage :: any
 
-  @callback new() :: storage
+  @callback new(opts :: keyword()) :: storage
   @callback all(storage) :: list(Entity.t())
   @callback find(storage, Entity.id()) :: {:ok, Entity.t()} | :error
   @callback save(storage, Entity.t()) :: Entity.id()
@@ -13,8 +13,8 @@ end
 defmodule Qwazar.Core.EntityStore do
   defstruct [:module, :instance]
 
-  def new(storage_mod) do
-    %__MODULE__{module: storage_mod, instance: apply(storage_mod, :new, [])}
+  def new(storage_mod, opts \\ []) do
+    %__MODULE__{module: storage_mod, instance: apply(storage_mod, :new, [opts])}
   end
 
   def all(store) do
