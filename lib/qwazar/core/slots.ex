@@ -12,7 +12,7 @@ defmodule Qwazar.Core.Slots do
 
   defmacro __using__(_opts) do
     quote do
-      Module.register_attribute(__MODULE__, :slots, accumulate: true, persist: true)
+      Module.register_attribute(__MODULE__, :slots, accumulate: true)
 
       import Qwazar.Core.Slots, only: [slot: 2, slot: 3]
 
